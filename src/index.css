@@ -1,0 +1,11 @@
+/* STILURI GLOBALE: 
+lucruri care se aplică peste tot 
+nu pui design specific de componente aici
+*/
+
+body {
+  margin: 0;
+  font-family: system-ui, Arial, sans-serif;
+}
+
+

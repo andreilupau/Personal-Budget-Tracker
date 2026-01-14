@@ -1,4 +1,570 @@
-/* Stiluri Locale
-layout-ul aplicației
-chestii specifice, nume de clase
-incep cu .nume de exemplu*/
+/* Minimal app styles (single-screen budget tracker) */
+
+:root {
+  --bg: #eef2f1;
+  --text: #0b1b14;
+  --muted: rgba(11, 27, 20, 0.55);
+  --border: rgba(11, 27, 20, 0.08);
+
+  --accent: #13b07a;
+  --danger: #e55353;
+
+  --radius-xl: 26px;
+  --radius-lg: 18px;
+
+  --shadow: 0 18px 50px rgba(11, 27, 20, 0.12);
+
+  /* Liquid glass */
+  --glass: rgba(255, 255, 255, 0.28);
+  --glass-strong: rgba(255, 255, 255, 0.44);
+  --glass-border: rgba(255, 255, 255, 0.55);
+  --glass-inner: rgba(255, 255, 255, 0.22);
+  --glass-shadow: 0 24px 70px rgba(11, 27, 20, 0.14);
+
+  --specular-strong: rgba(255, 255, 255, 0.7);
+  --specular-soft: rgba(255, 255, 255, 0.28);
+
+  --phone-top: rgba(255, 255, 255, 0.55);
+  --phone-bottom: rgba(255, 255, 255, 0.28);
+  --card-shadow: 0 14px 34px rgba(11, 27, 20, 0.1);
+
+  --row-bg: rgba(255, 255, 255, 0.34);
+  --row-border: rgba(255, 255, 255, 0.45);
+  --row-sheen-a: rgba(255, 255, 255, 0.42);
+  --row-sheen-b: rgba(255, 255, 255, 0.06);
+  --row-sheen-c: rgba(255, 255, 255, 0.18);
+
+  --icon-bg: rgba(11, 27, 20, 0.04);
+
+  --input-bg: rgba(255, 255, 255, 0.32);
+  --input-border: rgba(255, 255, 255, 0.5);
+
+  --chip-bg: rgba(255, 255, 255, 0.3);
+  --chip-border: rgba(255, 255, 255, 0.5);
+
+  --btn-glass: rgba(255, 255, 255, 0.22);
+  --btn-border: rgba(255, 255, 255, 0.55);
+
+  --primary-bg: rgba(11, 27, 20, 0.92);
+  --primary-shadow: 0 10px 26px rgba(11, 27, 20, 0.18);
+
+  --empty-bg: rgba(11, 27, 20, 0.03);
+  --empty-border: rgba(11, 27, 20, 0.14);
+}
+
+:root[data-theme="dark"] {
+  --bg: #0a0e0d;
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.6);
+  --border: rgba(255, 255, 255, 0.12);
+
+  --glass: rgba(16, 20, 20, 0.35);
+  --glass-strong: rgba(16, 20, 20, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-inner: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 28px 90px rgba(0, 0, 0, 0.55);
+
+  --specular-strong: rgba(255, 255, 255, 0.18);
+  --specular-soft: rgba(255, 255, 255, 0.08);
+
+  --phone-top: rgba(14, 18, 18, 0.7);
+  --phone-bottom: rgba(14, 18, 18, 0.35);
+  --card-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+
+  --row-bg: rgba(14, 18, 18, 0.48);
+  --row-border: rgba(255, 255, 255, 0.12);
+  --row-sheen-a: rgba(255, 255, 255, 0.14);
+  --row-sheen-b: rgba(255, 255, 255, 0.03);
+  --row-sheen-c: rgba(255, 255, 255, 0.08);
+
+  --icon-bg: rgba(255, 255, 255, 0.07);
+
+  --input-bg: rgba(16, 20, 20, 0.42);
+  --input-border: rgba(255, 255, 255, 0.14);
+
+  --chip-bg: rgba(16, 20, 20, 0.34);
+  --chip-border: rgba(255, 255, 255, 0.14);
+
+  --btn-glass: rgba(16, 20, 20, 0.42);
+  --btn-border: rgba(255, 255, 255, 0.14);
+
+  --primary-bg: rgba(255, 255, 255, 0.92);
+  --primary-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+
+  --empty-bg: rgba(255, 255, 255, 0.06);
+  --empty-border: rgba(255, 255, 255, 0.16);
+}
+
+.app {
+  min-height: 100vh;
+  background: radial-gradient(
+      900px 520px at 50% -140px,
+      rgba(19, 176, 122, 0.14),
+      transparent
+    ),
+    radial-gradient(
+      700px 420px at 8% 12%,
+      rgba(255, 255, 255, 0.55),
+      transparent 60%
+    ),
+    radial-gradient(
+      820px 520px at 92% 82%,
+      rgba(19, 176, 122, 0.08),
+      transparent 55%
+    ),
+    var(--bg);
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.phone {
+  position: relative;
+  width: min(420px, 92vw);
+  height: min(860px, 92vh);
+  background: linear-gradient(180deg, var(--phone-top), var(--phone-bottom));
+  border: 1px solid var(--glass-border);
+  border-radius: 34px;
+  box-shadow: var(--glass-shadow);
+  overflow: hidden;
+  backdrop-filter: blur(26px) saturate(180%);
+  -webkit-backdrop-filter: blur(26px) saturate(180%);
+}
+
+.phone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+      1200px 420px at 0% 0%,
+      var(--specular-strong),
+      transparent 55%
+    ),
+    radial-gradient(
+      900px 520px at 100% 100%,
+      var(--specular-soft),
+      transparent 60%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.26),
+      rgba(255, 255, 255, 0.06) 45%,
+      rgba(255, 255, 255, 0.2)
+    );
+  mix-blend-mode: overlay;
+  opacity: 0.55;
+}
+
+.phone__content {
+  height: 100%;
+  overflow: auto;
+  padding: 16px;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.screen-header {
+  height: 52px;
+  display: grid;
+  grid-template-columns: 64px 1fr 64px;
+  align-items: center;
+  color: var(--text);
+}
+
+.screen-header__side {
+  display: flex;
+  align-items: center;
+}
+
+.screen-header__side--right {
+  justify-content: flex-end;
+}
+
+.screen-header__title {
+  text-align: center;
+  font-weight: 650;
+  letter-spacing: 0.2px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  background: var(--glass-strong);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  padding: 16px;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+      520px 260px at 18% 0%,
+      rgba(255, 255, 255, 0.7),
+      transparent 60%
+    ),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.25), transparent 55%);
+  opacity: 0.6;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.row--between {
+  justify-content: space-between;
+}
+
+.section-title {
+  font-weight: 650;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.bt {
+  position: relative;
+}
+
+.bt__total {
+  margin-top: 6px;
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -0.6px;
+}
+
+.bt__composer {
+  padding-bottom: 14px;
+}
+
+.tx {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tx__row {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--row-border);
+  background: var(--row-bg);
+  backdrop-filter: blur(16px) saturate(175%);
+  -webkit-backdrop-filter: blur(16px) saturate(175%);
+}
+
+.tx__row::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    var(--row-sheen-a),
+    var(--row-sheen-b) 55%,
+    var(--row-sheen-c)
+  );
+  opacity: 0.55;
+}
+
+.tx__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  background: var(--icon-bg);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+}
+
+.tx__title {
+  font-weight: 650;
+  line-height: 1.1;
+}
+
+.tx__sub {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.tx__amt {
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+
+.tx__amt.is-income {
+  color: var(--accent);
+}
+
+.tx__amt.is-expense {
+  color: var(--danger);
+}
+
+.tx__right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tx__del {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-glass);
+  color: var(--muted);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+}
+
+.tx__del:hover {
+  color: var(--danger);
+}
+
+.tx__del:active {
+  transform: translateY(1px);
+}
+
+.empty {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: var(--radius-lg);
+  color: var(--muted);
+  background: var(--empty-bg);
+  border: 1px dashed var(--empty-border);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field__label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.field__row {
+  display: flex;
+  gap: 10px;
+}
+
+.input {
+  position: relative;
+  width: 100%;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--text);
+  padding: 0 12px;
+  font-size: 14px;
+  outline: none;
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+}
+
+.input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.input:focus {
+  border-color: rgba(19, 176, 122, 0.35);
+  box-shadow: 0 0 0 4px rgba(19, 176, 122, 0.12);
+}
+
+.chip {
+  height: 42px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--chip-border);
+  background: var(--chip-bg);
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 650;
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+}
+
+.chip.is-active {
+  color: var(--text);
+  border-color: rgba(19, 176, 122, 0.28);
+  background: rgba(19, 176, 122, 0.12);
+}
+
+.primary {
+  height: 48px;
+  border-radius: 16px;
+  border: 0;
+  background: var(--primary-bg);
+  color: rgba(255, 255, 255, 0.98);
+  font-weight: 750;
+  cursor: pointer;
+  box-shadow: var(--primary-shadow);
+}
+
+:root[data-theme="dark"] .primary {
+  color: rgba(11, 27, 20, 0.96);
+}
+
+.ghost {
+  height: 48px;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-glass);
+  color: var(--text);
+  font-weight: 750;
+  cursor: pointer;
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+}
+
+.ghost::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+      220px 120px at 18% 0%,
+      rgba(255, 255, 255, 0.7),
+      transparent 62%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.22),
+      rgba(255, 255, 255, 0.06)
+    );
+  opacity: 0.65;
+}
+
+.text-btn {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 750;
+  padding: 0;
+  height: 48px;
+  cursor: pointer;
+  align-self: center;
+}
+
+.text-btn:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.text-btn:active {
+  transform: translateY(1px);
+}
+
+.fab {
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  position: relative;
+  overflow: hidden;
+  background: var(--btn-glass);
+  border: 1px solid var(--btn-border);
+  color: var(--text);
+  font-size: 28px;
+  line-height: 1;
+  box-shadow: 0 18px 44px rgba(11, 27, 20, 0.14);
+  cursor: pointer;
+  backdrop-filter: blur(26px) saturate(190%);
+  -webkit-backdrop-filter: blur(26px) saturate(190%);
+}
+
+.fab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+      60px 40px at 22% 18%,
+      rgba(255, 255, 255, 0.85),
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.32),
+      rgba(255, 255, 255, 0.06)
+    );
+  opacity: 0.8;
+}
+
+.fab:active {
+  transform: translateY(1px);
+}
+
+.bt__fab {
+  position: sticky;
+  bottom: 14px;
+  margin-top: 6px;
+  margin-left: auto;
+}
+
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .phone,
+  .card,
+  .tx__row,
+  .input,
+  .chip,
+  .ghost,
+  .fab {
+    background: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 14px;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-glass);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+}
+
+.icon-btn:active {
+  transform: translateY(1px);
+}

@@ -1,11 +1,21 @@
-/* STILURI GLOBALE: 
-lucruri care se aplică peste tot 
-nu pui design specific de componente aici
-*/
+/* STILURI GLOBALE*/
 
 body {
   margin: 0;
   font-family: system-ui, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
+* {
+  box-sizing: border-box;
+}
 
+button,
+input,
+select {
+  font: inherit;
+}

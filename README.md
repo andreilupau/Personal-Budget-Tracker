@@ -1,34 +1,34 @@
 # Personal Budget Tracker (React + Vite)
 
-Aplicație simplă de urmărire a bugetului (single-page), în care poți adăuga **cheltuieli** și **venituri**, vezi **totalul** și lista de tranzacții.
+A simple single-page budget tracking app where you can add **expenses** and **income**, see your **total balance**, and browse your transactions.
 
-## Funcționalități
+## Features
 
-- Adaugi tranzacții: tip (cheltuială/venit), titlu, sumă, dată
-- Total calculat automat (venituri − cheltuieli)
-- Ștergere tranzacție din listă
-- Temă **light/dark**
-- Persistență în browser (localStorage) — fără backend
+- Add transactions: type (expense/income), title, amount, date
+- Automatic total calculation (income − expenses)
+- Delete transactions from the list
+- **Light/Dark** theme toggle
+- Browser persistence (localStorage) — no backend
 
-## Tehnologii
+## Tech Stack
 
 - React + Vite
 - ESLint
-- Persistență: localStorage (prin hook-ul `useLocalStorageState`)
+- Persistence: localStorage (via the `useLocalStorageState` hook)
 
-## Cerințe
+## Requirements
 
-- Node.js 18/20/22 LTS (recomandat)
+- Node.js 18/20/22 LTS (recommended)
 - npm
 
-## Rulare locală
+## Run Locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Alte comenzi utile:
+Other useful commands:
 
 ```bash
 npm run build
@@ -36,11 +36,11 @@ npm run preview
 npm run lint
 ```
 
-## Date salvate (localStorage)
+## Stored Data (localStorage)
 
-Aplicația salvează automat:
+The app automatically saves:
 
-- tranzacțiile în cheia `bt.transactions.v1`
-- tema în cheia `bt.theme.v1`
+- transactions under the `bt.transactions.v1` key
+- theme under the `bt.theme.v1` key
 
-Ca să resetezi aplicația, șterge aceste chei din DevTools → Application → Local Storage.
+To reset the app, delete these keys in DevTools → Application → Local Storage.

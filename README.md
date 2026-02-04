@@ -37,12 +37,3 @@ npm run build
 npm run preview
 npm run lint
 ```
-
-## Stored Data (localStorage)
-
-The app automatically saves:
-
-- transactions under the `bt.transactions.v1` key
-- theme under the `bt.theme.v1` key
-
-To reset the app, delete these keys in DevTools → Application → Local Storage.
